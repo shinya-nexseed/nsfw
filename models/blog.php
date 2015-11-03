@@ -4,7 +4,7 @@
     
     // データを取得する (model)
     $sql = 'SELECT * FROM ' . $plural_resource;
-    $resources = mysqli_query($db, $sql) or die(mysqli_error($db));
+    $blogs = mysqli_query($db, $sql) or die(mysqli_error($db));
 
 ?>
 
