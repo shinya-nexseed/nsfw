@@ -1,4 +1,8 @@
 <?php
+    // BlogsControllerのindexを呼び出す
+    $BlogsController = new BlogsController($db, $plural_resource);
+    $blogs = $BlogsController->index();
+
     echo "Hello world index view <br>";
     echo "<br>";
 
@@ -13,6 +17,4 @@
         echo $created;
         echo "<br>";
     }
-    
-
 ?>
