@@ -17,6 +17,46 @@
             $sql = 'SELECT * FROM ' . $this->plural_resource;
             return $sql;
         }
+
+        public function findById($id) {
+            $sql = sprintf('SELECT * FROM %s WHERE id=%s',
+              $this->plural_resource,
+              $id
+            );
+
+            return $sql;
+        }
+
+        public function create($blog) {
+            $sql = sprintf('INSERT INTO %s SET title="%s", body="%s", created=NOW()',
+                $this->plural_resource,
+                $blog['title'],
+                $blog['body']
+            );
+
+            return $sql;
+        }
+
+        public function update($blog) {
+            $sql = sprintf('UPDATE %s SET title="%s", body="%s", modified=NOW() WHERE id=%s',
+                $this->plural_resource,
+                $blog['title'],
+                $blog['body'],
+                $blog['id']
+            );
+
+            return $sql;
+        }
+
+        
+        public function destroy($id) {
+            $sql = sprintf('DELETE FROM %s WHERE id=%s',
+                $this->plural_resource,
+                $id
+            );
+
+            return $sql;
+        }
     }
 ?>
 

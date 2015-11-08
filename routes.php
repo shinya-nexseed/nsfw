@@ -23,8 +23,8 @@
     // $a->setName('ドラえもん');
     // $b->setName('ドラミちゃん');
 
-    echo $a->getName();
-    echo $b->getName();
+    // echo $a->getName();
+    // echo $b->getName();
 
     // $singular = "category";
     // echo $singular;
@@ -49,8 +49,14 @@
     $resource = $params[0];
     $action = $params[1];
 
+    if (count($params) > 2) {
+        $id = $params[2];
+    }
+
+
     // リソース名を複数形に変換する処理
     $plural_resource = singular2plural($resource);
+
 
     // model呼び出す
     include('./models/' . $resource . '.php');
@@ -58,11 +64,18 @@
     // controller呼び出す
     include('./controllers/' . $plural_resource . '_controller.php');
 
+    // リソース名がdeleteなら削除処理する
+    if ($action == 'delete') {
+        $BlogsController = new BlogsController($db, $plural_resource);
+        $BlogsController->delete($id);
+    }
+
+    // viewの形成を楽にするヘルパーファイルを読み込み
+    include('./views/helpers/application_helper.php');
+
     // レイアウトファイルを読み込み
     include('./views/layouts/application.php');
     // ./ ← 現在いるディレクトリ
-
-
 ?>
 
 
